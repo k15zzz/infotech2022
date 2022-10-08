@@ -1,0 +1,111 @@
+.section-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .section-page-background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    z-index: -1;
+    .section-page-background-panel {
+      width: 210px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(21, 33, 82, 0.62) 23.7%, rgba(13, 148, 224, 0.42) 95.68%);
+    }
+    .section-page-background-item__1 {
+      width: 500px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(21, 33, 82, 0) 0%, rgba(13, 148, 224, 0.37) 100%);
+      transform: rotate(-180deg);
+    }
+    .section-page-background-item__2 {
+      width: 500px;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(21, 33, 82, 0.62) 0%, rgba(13, 148, 224, 0.41) 100%);
+    }
+    .section-page-background-item__3 {
+      width: 500px;
+      height: 100%;
+      background: linear-gradient(180deg, #0D94E0 -91.48%, rgba(21, 33, 82, 0) 183.33%);
+    }
+  }
+  .section-page-close__button {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: 50px;
+    right: -50px;
+    left: 92%;
+    svg {
+      padding-top: 13px;
+      display: block;
+      width: 67.53px;
+      height: 56.77px;
+      margin: auto;
+    }
+  }
+  .section-page-title {
+    height: 344px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .section-page-title__text {
+      color: white;
+      font-size: 73px;
+      display: block;
+    }
+  }
+  .section-page-grid-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .section-page-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(500px, 500px));
+      grid-template-rows: repeat(1, minmax(392.5px, 392.5px));
+      grid-column-gap: 0;
+      grid-row-gap: 0;
+      justify-content: center;
+      align-items:center;
+      .section-page-grid-item {
+        align-items: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        height: 392.5px;
+        background: linear-gradient(180deg, rgba(13, 148, 224, 0.114) 0%, rgba(13, 148, 224, 0.204) 0.01%, rgba(13, 148, 224, 0.084) 100%);
+        .section-page-grid-item-content {
+          .section-page-grid-item-content__logo {
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            svg {
+              padding-top: 25%;
+              display: block;
+              margin: auto;
+            }
+          }
+          .section-page-grid-item-content__title {
+            width: 390px;
+            font-size: 33px;
+            text-align: center;
+            color: white;
+          }
+        }
+      }
+      .section-page-grid-item__link {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
