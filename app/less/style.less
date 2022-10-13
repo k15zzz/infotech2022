@@ -22,7 +22,32 @@ html, body, main { width: 100%; height: 100%;}
 .start-screen.is_hide {
     -webkit-transform: translateY(-100%);
     -ms-transform: translateY(-100%);
-    transform: translateY(-100%); }
+    transform: translateY(-100%);
+}
+
+:root {
+    --scrollbarBg: rgba(70, 185, 250, 0.50);
+    --scrollbarThumb: rgb(19, 31, 71);
+    --scrollbarWidth: 12px;
+    --scrollbarBorder: 3px solid var(--scrollbarBg);
+    --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+}
+body, .presentation-page__iframe {
+    scrollbar-width: var(--scrollbarWidth);
+    scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+}
+body::-webkit-scrollbar, .presentation-page__iframe::-webkit-scrollbar {
+    width: var(--scrollbarWidth);
+}
+body::-webkit-scrollbar-track, .presentation-page__iframe::-webkit-scrollbar-track {
+    background: var(--scrollbarBg);
+    border-radius: var(--scrollbarBorderRadius);
+}
+body::-webkit-scrollbar-thumb, .presentation-page__iframe::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbarThumb);
+    border-radius: var(--scrollbarBorderRadius);
+    border: var(--scrollbarBorder);
+}
 @import url("_section.less");
 @import url("_main.less");
 @import url("_iframe.less");

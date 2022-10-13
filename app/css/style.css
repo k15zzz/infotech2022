@@ -29,6 +29,33 @@ main {
   -ms-transform: translateY(-100%);
   transform: translateY(-100%);
 }
+:root {
+  --scrollbarBg: rgba(70, 185, 250, 0.5);
+  --scrollbarThumb: #131f47;
+  --scrollbarWidth: 12px;
+  --scrollbarBorder: 3px solid var(--scrollbarBg);
+  --scrollbarBorderRadius: calc(var(--scrollbarWidth) / 2);
+}
+body,
+.presentation-page__iframe {
+  scrollbar-width: var(--scrollbarWidth);
+  scrollbar-color: var(--scrollbarThumb) var(--scrollbarBg);
+}
+body::-webkit-scrollbar,
+.presentation-page__iframe::-webkit-scrollbar {
+  width: var(--scrollbarWidth);
+}
+body::-webkit-scrollbar-track,
+.presentation-page__iframe::-webkit-scrollbar-track {
+  background: var(--scrollbarBg);
+  border-radius: var(--scrollbarBorderRadius);
+}
+body::-webkit-scrollbar-thumb,
+.presentation-page__iframe::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbarThumb);
+  border-radius: var(--scrollbarBorderRadius);
+  border: var(--scrollbarBorder);
+}
 .section-page {
   width: 100%;
   height: 100%;
@@ -71,18 +98,19 @@ main {
   height: 90px;
   top: 50px;
   right: -50px;
-  left: 92%;
+  left: 92.6%;
 }
 .section-page .section-page-close__button:active {
   background: rgba(70, 185, 250, 0.5);
   border-radius: 100%;
 }
 .section-page .section-page-close__button svg {
-  padding-top: 13px;
+  margin: auto;
+  padding-top: 8px;
+  margin-top: 14px;
   display: block;
   width: 67.53px;
   height: 56.77px;
-  margin: auto;
 }
 .section-page .section-page-title {
   position: absolute;
@@ -251,18 +279,19 @@ main {
 }
 .iframe-page {
   width: 100%;
-  height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 0.12fr;
+  height: calc(100vh);
   flex-direction: row;
   position: relative;
 }
 .iframe-page .iframe-page-panel__background {
-  width: 210px;
   height: 100%;
   background: linear-gradient(180deg, rgba(21, 33, 82, 0.62) 23.7%, rgba(13, 148, 224, 0.42) 95.68%);
 }
 .iframe-page .iframe-page__iframe {
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   border: 0;
@@ -271,20 +300,27 @@ main {
   position: absolute;
   width: 90px;
   height: 90px;
-  top: 40px;
-  right: 45px;
+  top: 50px;
+  right: -50px;
+  left: 92.6%;
+}
+.iframe-page .iframe-page-close__button:active {
+  background: rgba(70, 185, 250, 0.5);
+  border-radius: 100%;
 }
 .iframe-page .iframe-page-close__button svg {
-  padding-top: 13px;
+  margin: auto;
+  padding-top: 8px;
+  margin-top: 14px;
   display: block;
   width: 67.53px;
   height: 56.77px;
-  margin: auto;
 }
 .presentation-page {
   width: 100%;
-  height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 0.12fr;
+  height: calc(100vh);
   flex-direction: row;
   position: relative;
 }
@@ -298,29 +334,45 @@ main {
   margin: 0;
   padding: 0;
   border: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.presentation-page .presentation-page__iframe img {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 .presentation-page .presentation-page-close__button {
   position: absolute;
   width: 90px;
   height: 90px;
-  top: 40px;
-  right: 45px;
+  top: 50px;
+  right: -50px;
+  left: 92.6%;
 }
 .presentation-page .presentation-page-close__button svg {
-  padding-top: 13px;
+  margin: auto;
+  padding-top: 8px;
+  margin-top: 14px;
   display: block;
   width: 67.53px;
   height: 56.77px;
-  margin: auto;
+}
+.presentation-page .presentation-page-close__button:active {
+  background: rgba(70, 185, 250, 0.5);
+  border-radius: 100%;
 }
 * {
   box-sizing: border-box;
 }
 .slider {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin: 50px auto 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: center center;
   user-select: none;
   touch-action: pan-y;
 }
@@ -328,8 +380,8 @@ main {
   poiner-events: none;
 }
 .slider-list {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 .slider-list.grab {
@@ -340,16 +392,17 @@ main {
 }
 .slider-track {
   display: flex;
+  width: 100%;
+  height: 100%;
 }
 .slide {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
   flex-shrink: 0;
   font-size: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #000;
 }
 .slider-arrows {
   margin-top: 15px;

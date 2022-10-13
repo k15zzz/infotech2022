@@ -28,7 +28,9 @@
                                 {{this.title}}
                             </div>
                         </div>
-                        <a class="section-page-grid-item__link" data-link="{{this.link}}" data-type="{{this.type}}"></a>
+                        {{#if this.link}}
+                            <a class="section-page-grid-item__link" data-link="{{this.link}}" data-type="{{this.type}}"></a>
+                        {{/if}}
                     </div>
                 {{/each}}
             </div>

@@ -1,19 +1,23 @@
 <script id="presentation-page" type="text/x-handlebars-template" >
     <section class="presentation-page" >
-        <div class="presentation-page__iframe slider">
-            <div class="slider-list">
-                <div class="slider-track">
-                    <div class="slide">1</div>
-                    <div class="slide">2</div>
-                    <div class="slide">3</div>
-                    <div class="slide">4</div>
-                    <div class="slide">5</div>
-                </div>
-            </div>
-            <div class="slider-arrows">
-                <button type="button" class="prev">&larr;</button>
-                <button type="button" class="next">&rarr;</button>
-            </div>
+        <div class="presentation-page__iframe ">
+            {{#each images}}
+            <a>
+                <img src="{{this}}">
+            </a>
+            {{/each}}
+
+<!--     slider       <div class="slider-list">-->
+<!--                <div class="slider-track">-->
+<!--                    {{#each images}}-->
+<!--                        <div class="slide" style="background: url('{{this}}') no-repeat"></div>-->
+<!--                    {{/each}}-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="slider-arrows">-->
+<!--                <button type="button" class="prev">&larr;</button>-->
+<!--                <button type="button" class="next">&rarr;</button>-->
+<!--            </div>-->
         </div>
         <div class="presentation-page-panel__background"></div>
         <div class="presentation-page-close__button js-presentation-page-close__button" data-link="{{parent}}" data-type="{{type}}">

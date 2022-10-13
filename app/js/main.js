@@ -6,6 +6,8 @@ $(function(){
         "./parts/_presentation.html"
     ];
 
+    let imgPath = './images/'
+
     let template;
 
     const includeParts = (paths, index, indexLast,) => {
@@ -41,6 +43,7 @@ $(function(){
             let type = $(this).data('type');
             $("main").html(template[type](contentTemplate[link]));
             SetEventClass();
+            SetSlider();
         });
 
         $('.js-section-page-close__button').on('click', function () {
@@ -52,7 +55,10 @@ $(function(){
         $('.js-iframe-page-close__button').on('click', function () {
             let link = $(this).data('link');
             let type = $(this).data('type');
-            $("main").html(template.section(contentTemplate[link]));
+            if (link==='main') {
+                $('main').html(template.main);
+                $('.start-screen').toggleClass('is_hide');
+            } else $("main").html(template[type](contentTemplate[link]));
             convertSVG();
             SetEventClass();
         });
@@ -61,6 +67,18 @@ $(function(){
             let link = $(this).data('link');
             let type = $(this).data('type');
             $("main").html(template[type](contentTemplate[link]));
+            convertSVG();
+            SetEventClass();
+            SetSlider();
+        });
+
+        $('.js-presentation-page-close__button').on('click', function () {
+            let link = $(this).data('link');
+            let type = $(this).data('type');
+            if (link==='main') {
+                $('main').html(template.main);
+                $('.start-screen').toggleClass('is_hide');
+            } else $("main").html(template[type](contentTemplate[link]));
             convertSVG();
             SetEventClass();
         });
@@ -75,11 +93,13 @@ $(function(){
     }
 
     const convertSVG = () => {
+        if (!$('#js-convert')) return;
         let y = document.querySelectorAll('#js-convert');
         for (let i=y.length; i--;) $(y[i]).html($(y[i]).text());
     }
 
     const SetSlider = () => {
+        if (!$('.slider').length) return;
         let slider = document.querySelector('.slider'),
             sliderList = slider.querySelector('.slider-list'),
             sliderTrack = slider.querySelector('.slider-track'),
@@ -269,20 +289,23 @@ $(function(){
 
     const contentTemplate =  {
         proactiveBudgeting: {
-            title: "Инициативное бюджетирование",
-            type: "iframe"
+            parent: "main",
+            iframe: "https://info.agt72.ru/blagoustroystvo/"
         },
         bikePaths: {
             iframe: "https://velo-tmn.tyumen-city.ru/",
-            parent: "socialInfrastructure"
+            parent: "socialInfrastructure",
+            type: 'section'
         },
         touristCard: {
             iframe: "https://tourist.tyumen-city.ru/",
-            parent: "socialInfrastructure"
+            parent: "socialInfrastructure",
+            type: 'section'
         },
         citywideBicycleRental: {
             iframe: "?",
-            parent: "socialInfrastructure"
+            parent: "socialInfrastructure",
+            type: 'section'
         },
         socialInfrastructure: {
             title: "Социальная инфраструктура",
@@ -316,6 +339,43 @@ $(function(){
                     link: 'citywideBicycleRental'
                 }
             ]
+        },
+        mapLandscapingObjects: {
+            iframe: "https://info.agt72.ru/blagoustroystvo/",
+            parent: "improvementCity",
+            type: "section"
+        },
+        stepsCities: {
+            images: [
+                imgPath+"/presentation_1/gg_Страница_01.jpg",
+                imgPath+"/presentation_1/gg_Страница_02.jpg",
+                imgPath+"/presentation_1/gg_Страница_03.jpg",
+                imgPath+"/presentation_1/gg_Страница_04.jpg",
+                imgPath+"/presentation_1/gg_Страница_05.jpg",
+                imgPath+"/presentation_1/gg_Страница_06.jpg",
+                imgPath+"/presentation_1/gg_Страница_07.jpg",
+                imgPath+"/presentation_1/gg_Страница_08.jpg",
+                imgPath+"/presentation_1/gg_Страница_09.jpg",
+                imgPath+"/presentation_1/gg_Страница_10.jpg",
+                imgPath+"/presentation_1/gg_Страница_11.jpg",
+                imgPath+"/presentation_1/gg_Страница_12.jpg",
+                imgPath+"/presentation_1/gg_Страница_13.jpg",
+                imgPath+"/presentation_1/gg_Страница_14.jpg",
+                imgPath+"/presentation_1/gg_Страница_15.jpg",
+                imgPath+"/presentation_1/gg_Страница_16.jpg",
+                imgPath+"/presentation_1/gg_Страница_17.jpg",
+                imgPath+"/presentation_1/gg_Страница_18.jpg",
+                imgPath+"/presentation_1/gg_Страница_19.jpg",
+                imgPath+"/presentation_1/gg_Страница_20.jpg",
+                imgPath+"/presentation_1/gg_Страница_21.jpg",
+                imgPath+"/presentation_1/gg_Страница_22.jpg",
+                imgPath+"/presentation_1/gg_Страница_23.jpg",
+                imgPath+"/presentation_1/gg_Страница_24.jpg",
+                imgPath+"/presentation_1/gg_Страница_25.jpg",
+                imgPath+"/presentation_1/gg_Страница_26.jpg"
+            ],
+            parent: "improvementCity",
+            type: "section"
         },
         improvementCity: {
             title: "Благоустройство города",
@@ -382,15 +442,18 @@ $(function(){
         },
         monitoringNetworks: {
             iframe: "https://info.agt72.ru/mkd/",
-            parent: "urbanEconomy"
+            parent: "urbanEconomy",
+            type: 'section'
         },
         monitoringCleaning: {
-            iframe: "https://info.agt72.ru/dig/",
-            parent: "urbanEconomy"
+            iframe: "https://info.agt72.ru/grader/",
+            parent: "urbanEconomy",
+            type: 'section'
         },
         earthworks: {
-            iframe: "https://info.agt72.ru/grader/",
-            parent: "urbanEconomy"
+            iframe: "https://info.agt72.ru/dig/",
+            parent: "urbanEconomy",
+            type: 'section'
         },
         urbanEconomy : {
             title: "Городское хозяйство",
@@ -439,21 +502,27 @@ $(function(){
                         '<path d="M108.5 54.0001C108.5 55.6569 107.157 57.0001 105.5 57.0001C103.843 57.0001 102.5 55.6569 102.5 54.0001C102.5 52.3432 103.843 51.0001 105.5 51.0001C107.157 51.0001 108.5 52.3432 108.5 54.0001Z" fill="white"/>\n' +
                         '<path d="M84.5001 51.0001C84.5001 52.6569 83.1569 54.0001 81.5001 54.0001C79.8432 54.0001 78.5001 52.6569 78.5001 51.0001C78.5001 49.3432 79.8432 48.0001 81.5001 48.0001C83.1569 48.0001 84.5001 49.3432 84.5001 51.0001Z" fill="white"/>\n' +
                         '</svg>\n',
-                    link: 'earthworks'
+                    link: 'earthworks',
+                    type: "iframe"
                 }
             ]
         },
         tyumenHome: {
             iframe: "https://dom.tyumen-city.ru/",
-            parent: "residentsCity"
+            parent: "residentsCity",
+            type: 'section'
         },
         yourTyumen: {
             iframe: "https://you.tyumen-city.ru/",
-            parent: "residentsCity"
+            parent: "residentsCity",
+            type: 'section'
+
         },
         iDecide: {
             iframe: "https://dom.tyumen-city.ru/ir/",
-            parent: "residentsCity"
+            parent: "residentsCity",
+            type: 'section'
+
         },
         residentsCity: {
             title: "Интерактивное взаимодействие с жителями города",
@@ -516,11 +585,25 @@ $(function(){
         },
         trafficLightObjects: {
             iframe: "https://tgt72.ru/map/#trafficlight_layer",
-            parent: "transportSystem"
+            parent: "transportSystem",
+            type: 'section'
         },
         tyumenTransport: {
-            iframe: "https://tmn-parking.ru/",
-            parent: "transportSystem"
+            iframe: "http://tgt72.ru/",
+            parent: "transportSystem",
+            type: 'section'
+        },
+        dispatchingTransport: {
+            iframe: "http://tgt72.ru/",
+            parent: "transportSystem",
+            type: "section",
+            images: [
+                imgPath+"/presentation_1/gg_Страница_01.jpg",
+                imgPath+"/presentation_1/gg_Страница_02.jpg",
+                imgPath+"/presentation_1/gg_Страница_03.jpg",
+                imgPath+"/presentation_1/gg_Страница_04.jpg",
+                imgPath+"/presentation_1/gg_Страница_05.jpg"
+            ]
         },
         transportSystem : {
             title: "Транспортная система",
@@ -574,9 +657,8 @@ $(function(){
             section: Handlebars.compile($("#section-page").html()),
             presentation:  Handlebars.compile($("#presentation-page").html())
         }
-        $("main").html(template.presentation);
+        $("main").html(template.main);
         SetEventClass();
-        SetSlider();
     });
 
 });
